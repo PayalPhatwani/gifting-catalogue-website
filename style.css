@@ -16,20 +16,31 @@ header {
 }
 
 .navbar {
+  position: relative; /* for logo absolute positioning */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 0.5rem;
+  flex-direction: column; /* stack logo and tagline vertically */
+  padding: 1rem 1rem;
+  text-align: center;
 }
+
 .logo {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
   color: #fff;
-  text-align: center;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-  flex: 1;
+  position: relative; /* relative works here for vertical stacking */
+  margin-bottom: 0.5rem;
 }
+
+.navbar p {
+  font-size: 1.1rem;
+  font-family: 'Merriweather', serif;
+  margin: 0;
+}
+
+
 
 .nav-left ul,
 .nav-right ul {
@@ -65,65 +76,6 @@ header {
   transform: scale(1.1);
 }
 
-/* Responsive adjustment for small screens */
-/* Mobile responsive cards */
-@media (max-width: 768px) {
-  .card {
-    flex-direction: column; /* stack left & right vertically */
-  }
-
-  .card-left,
-  .card-right {
-    max-width: 100%; /* full width */
-  }
-
-  .card-left {
-    height: 250px; /* adjust height as needed for slideshow */
-  }
-
-  .slideshow-container img {
-    height: 100%; /* make image fill the container */
-    width: 100%;
-  }
-
-  .prev,
-  .next {
-    font-size: 0.9rem; /* keep arrows small */
-    padding: 0.2rem 0.5rem;
-  }
-}
-
-
-
-.navbar h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  margin: 0;
-  color: #fff;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-}
-
-.navbar nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-family: 'Merriweather', serif;
-  font-weight: 500;
-  transition: color 0.3s, transform 0.2s;
-}
-
-.navbar nav ul li a:hover {
-  color: #ffd700; /* gold accent */
-  transform: scale(1.1);
-}
-
 header p {
   font-size: 1.1rem;
   margin-top: 0;
@@ -137,35 +89,81 @@ header p {
   padding: 2rem;
 }
 
+/* New card-wrapper for zoom-out effect */
+.card-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* center card */
+  overflow: hidden;        /* hide overflow if card is too big */
+}
+
 .card {
   display: flex;
+  flex-direction: row;     /* keep horizontal layout */
+  flex-wrap: nowrap;       /* prevent stacking */
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   overflow: hidden;
+  width: 600px;            /* default card width */
+  transition: transform 0.2s ease; /* smooth scaling */
+  margin: 1rem auto;
+}
+
+.card-left{
+  flex: 2;
+  min-width: 150px;        /* ensures both sides don't shrink too much */
+  height: 100%;          /* stretch to full card height */
+  position: relative;
+}
+
+.card-right {
+  flex: 1;
+  min-width: 150px;        /* ensures both sides don't shrink too much */
 }
 
 .card-left {
-  flex: 1;
-  max-width: 50%;
+  height: 250px;           /* slideshow container height */
   position: relative;
+}
+
+.card-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* fill container while maintaining ratio */
+  transform: scale(1.1);    /* zoom slightly */
+  transform-origin: center center; /* zoom from center */
+  transition: transform 0.3s ease;
+}
+
+.card-right {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .slideshow-container {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100%; /* fills card-left */
+  overflow: hidden; /* hides non-active slides */
 }
 
 .slideshow-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: none;
+  display: none; /* hide all slides by default */
+  position: absolute; /* position on top of each other */
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease;
 }
 
 .slideshow-container img.active {
-  display: block;
+  display: block; /* show only active slide */
+  position: relative; /* allow it to fill container */
 }
 
 .prev,
@@ -176,10 +174,10 @@ header p {
   background-color: rgba(0,0,0,0.4);
   border: none;
   color: white;
-  font-size: 1rem;   /* smaller size */
-  padding: 0.2rem 0.5rem; /* less padding */
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
   cursor: pointer;
-  border-radius: 3px;  /* small rounded corner */
+  border-radius: 3px;
 }
 
 .prev:hover,
@@ -187,24 +185,8 @@ header p {
   background-color: rgba(0,0,0,0.7);
 }
 
-.prev {
-  left: 5px;
-}
-
-.next {
-  right: 5px;
-}
-
-
-.card-right {
-  flex: 1;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-
+.prev { left: 5px; }
+.next { right: 5px; }
 
 .card-right h2 {
   font-family: 'Playfair Display', serif;
@@ -218,7 +200,7 @@ header p {
 
 .description {
   font-family: 'Merriweather', serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   color: #444;
   margin-top: 0.8rem;
@@ -226,8 +208,10 @@ header p {
 
 .description strong {
   font-family: 'Great Vibes', cursive;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #d35400; /* festive orange */
+  text-align: left;   /* force left alignment */
+  display: block; 
 }
 
 .price {
@@ -258,4 +242,23 @@ footer p::before {
   content: "✨ ";
 }
 
+/* Zoom out proportionally if card is wider than viewport */
+@media (max-width: 600px) {
+  .card {
+    transform: scale(calc(100vw / 600)); /* scale entire card */
+    transform-origin: top center;        /* scale from top */
+  }
+}
 
+/* Optional: adjust font size for small screens */
+@media (max-width: 414px) {
+  .card-right h2 {
+    font-size: 1rem;
+  }
+  .description {
+    font-size: 0.6rem;
+  }
+  .price {
+    font-size: 1rem;
+  }
+}
