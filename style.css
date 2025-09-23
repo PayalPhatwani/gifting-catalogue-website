@@ -66,21 +66,33 @@ header {
 }
 
 /* Responsive adjustment for small screens */
+/* Mobile responsive cards */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
+  .card {
+    flex-direction: column; /* stack left & right vertically */
   }
 
-  .nav-left,
-  .nav-right {
-    justify-content: center;
-    margin: 0.5rem 0;
+  .card-left,
+  .card-right {
+    max-width: 100%; /* full width */
   }
 
-  .logo {
-    margin: 0.5rem 0;
+  .card-left {
+    height: 250px; /* adjust height as needed for slideshow */
+  }
+
+  .slideshow-container img {
+    height: 100%; /* make image fill the container */
+    width: 100%;
+  }
+
+  .prev,
+  .next {
+    font-size: 0.9rem; /* keep arrows small */
+    padding: 0.2rem 0.5rem;
   }
 }
+
 
 
 .navbar h1 {
@@ -245,3 +257,5 @@ footer p {
 footer p::before {
   content: "✨ ";
 }
+
+
