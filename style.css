@@ -7,62 +7,241 @@ body {
 
 header {
   text-align: center;
-  padding: 2rem;
-  background: #222;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #f6d365, #fda085); /* warm Diwali gradient */
   color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
-header h1 {
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  flex: 1;
+}
+
+.nav-left ul,
+.nav-right ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
   margin: 0;
-  font-size: 2.5rem;
+  padding: 0;
+}
+
+.nav-left {
+  flex: 1;
+}
+
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-left ul li a,
+.nav-right ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Merriweather', serif;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.nav-left ul li a:hover,
+.nav-right ul li a:hover {
+  color: #ffd700; /* gold accent */
+  transform: scale(1.1);
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .nav-left,
+  .nav-right {
+    justify-content: center;
+    margin: 0.5rem 0;
+  }
+
+  .logo {
+    margin: 0.5rem 0;
+  }
+}
+
+
+.navbar h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin: 0;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.navbar nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Merriweather', serif;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.navbar nav ul li a:hover {
+  color: #ffd700; /* gold accent */
+  transform: scale(1.1);
 }
 
 header p {
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  margin-top: 0;
+  font-family: 'Merriweather', serif;
 }
 
 .catalogue {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   padding: 2rem;
 }
 
 .card {
+  display: flex;
   background: #fff;
   border-radius: 12px;
-  padding: 1rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.2s;
+  overflow: hidden;
 }
 
-.card:hover {
-  transform: scale(1.03);
+.card-left {
+  flex: 1;
+  max-width: 50%;
+  position: relative;
 }
 
-.card img {
+.slideshow-container {
+  position: relative;
   width: 100%;
-  height: 180px;
+  height: 100%;
+}
+
+.slideshow-container img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  display: none;
 }
 
-.card h2 {
-  margin: 0.8rem 0 0.4rem;
-  font-size: 1.2rem;
+.slideshow-container img.active {
+  display: block;
 }
 
-.card p {
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.4);
+  border: none;
+  color: white;
+  font-size: 1rem;   /* smaller size */
+  padding: 0.2rem 0.5rem; /* less padding */
+  cursor: pointer;
+  border-radius: 3px;  /* small rounded corner */
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0,0,0,0.7);
+}
+
+.prev {
+  left: 5px;
+}
+
+.next {
+  right: 5px;
+}
+
+
+.card-right {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+.card-right h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: #c0392b; /* festive red */
+}
+
+.card-right p {
+  margin: 0.3rem 0;
+}
+
+.description {
+  font-family: 'Merriweather', serif;
   font-size: 1rem;
-  color: #777;
+  line-height: 1.5;
+  color: #444;
+  margin-top: 0.8rem;
+}
+
+.description strong {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.3rem;
+  color: #d35400; /* festive orange */
+}
+
+.price {
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  color: #e67e22;
 }
 
 footer {
   text-align: center;
-  padding: 1rem;
-  background: #222;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, #f6d365, #fda085); /* same Diwali gradient */
   color: #fff;
-  margin-top: 2rem;
+  font-family: 'Merriweather', serif;
+  font-size: 1rem;
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer p::before {
+  content: "✨ ";
 }
