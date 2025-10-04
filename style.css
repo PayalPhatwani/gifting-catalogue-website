@@ -207,8 +207,7 @@ header p {
 }
 
 .description strong {
-  font-family: 'Great Vibes', cursive;
-  font-size: 1.1rem;
+  font-family: 'Great Vibes', cursive;  font-size: 1.1rem;
   color: #d35400; /* festive orange */
   text-align: left;   /* force left alignment */
   display: block; 
@@ -222,25 +221,62 @@ header p {
   color: #e67e22;
 }
 
+
+
 footer {
-  text-align: center;
-  padding: 1.5rem 2rem;
   background: linear-gradient(135deg, #f6d365, #fda085); /* same Diwali gradient */
   color: #fff;
   font-family: 'Merriweather', serif;
   font-size: 1rem;
-  box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
 }
 
-footer p {
-  margin: 0;
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
-footer p::before {
-  content: "✨ ";
+.footer-left,
+.footer-center,
+.footer-right {
+  flex: 1;
+  min-width: 200px;
+  padding: 5px;
 }
+
+.footer-bottom {
+ 
+  background: linear-gradient(135deg, #f3b78c, #ed8d73); /* same Diwali gradient */
+  color: #fff;
+  text-align: center;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #eeeeee;        /* gold-ish highlight */
+}
+
+.footer-right a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.rightreserve{
+  background: linear-gradient(135deg, #f6d365, #fda085); /* same Diwali gradient */
+}
+.footer-right a:hover {
+  color: #ffd700; /* gold hover */
+  padding-bottom: 9cap;
+}
+
+.footer-right i {
+  margin-right: 6px; /* space between icon and text */
+}
+
+
+
 
 /* Zoom out proportionally if card is wider than viewport */
 @media (max-width: 600px) {
